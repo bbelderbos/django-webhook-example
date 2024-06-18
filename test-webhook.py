@@ -30,7 +30,6 @@ raw_request_payload = """
   "q10_whatServices": "services",
   "event_id": "1718710188942_241692120026345_IMXUbBN",
   "timeToSubmit": "15",
-  "validatedNewRequiredFieldIDs": "{\\"new\\":1}",
   "path": "/submit/241692120026345"
 }
 """.strip()
