@@ -1,5 +1,6 @@
 import json
 
+from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -10,6 +11,11 @@ from .models import Application
 @csrf_exempt
 @require_POST
 def jotform_webhook(request):
+    secret_key = request.GET.get('key')
+    expected_key = settings.JOTFORM_SECRET_KEY
+    if secret_key != expected_key:
+        return JsonResponse({"error": "Unauthorized"}, status=401)
+
     try:
         raw_request = request.POST.get('rawRequest')
         if not raw_request:
